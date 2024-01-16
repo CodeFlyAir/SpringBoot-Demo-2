@@ -49,4 +49,32 @@ class StudentRepositoryTest {
         List<Student> students = repository.findByFirstName("John");
         System.out.println(students);
     }
+
+    @Test
+    public void getStudentByEmail(){
+        List<Student> students = repository.getStudentByEmail("ifan@gmail.com");
+        System.out.println(students);
+    }
+    @Test
+    public void getStudentFirstNameByEmail(){
+        String firstName = repository.getStudentFirstNameByEmail("ifan@gmail.com");
+        System.out.println(firstName);
+    }
+
+    @Test
+    public void getStudentByEmailNative(){
+        List<Student> students = repository.getStudentByEmailNative("ifan@gmail.com");
+        System.out.println(students);
+    }
+
+    @Test
+    public void getStudentByEmailNativeNamedQuery(){
+        List<Student> students = repository.getStudentByEmailNativeNamedQuery("ifan@gmail.com");
+        System.out.println(students);
+    }
+
+    @Test
+    public void updateFirstNameByEmail(){
+        repository.updateFirstNameByEmail("Sam","ifan@gmail.com");
+    }
 }
