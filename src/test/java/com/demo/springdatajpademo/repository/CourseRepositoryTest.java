@@ -5,10 +5,10 @@ import com.demo.springdatajpademo.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CourseRepositoryTest {
@@ -29,11 +29,23 @@ class CourseRepositoryTest {
                 .build();
 
         Course course=Course.builder()
-                .title("AFL")
+                .title("SPM")
                 .credits(3)
                 .teacher(teacher)
                 .build();
 
         repository.save(course);
+    }
+
+    @Test
+    void getCourseWithPagination(){
+        Pageable firstPageWithThreeRecords=
+                PageRequest.of(0,2);
+
+        Pageable secondPageWithTwoRecords=
+                PageRequest.of(1,2);
+
+        List<Course> courses=repository.findAll(firstPageWithThreeRecords).getContent();
+        System.out.println(courses);
     }
 }
