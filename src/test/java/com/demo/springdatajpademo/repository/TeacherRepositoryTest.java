@@ -11,29 +11,24 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class CourseRepositoryTest {
+class TeacherRepositoryTest {
+
     @Autowired
-    private CourseRepository repository;
+    private TeacherRepository repository;
 
     @Test
-    void fetchCourses(){
-        List<Course> courses = repository.findAll();
-        System.out.println(courses);
-    }
-
-    @Test
-    void saveCourseWithTeacher(){
-        Teacher teacher=Teacher.builder()
-                .firstName("Prince")
-                .lastName("Jacky")
-                .build();
-
+    void saveTeacher(){
         Course course=Course.builder()
-                .title("AFL")
+                .title("DBMS")
                 .credits(3)
-                .teacher(teacher)
                 .build();
 
-        repository.save(course);
+        Teacher teacher=Teacher.builder()
+                .firstName("James")
+                .lastName("Malvin")
+//                .courses(List.of(course))
+                .build();
+
+        repository.save(teacher);
     }
 }
